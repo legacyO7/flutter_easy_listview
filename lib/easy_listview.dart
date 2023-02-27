@@ -92,6 +92,7 @@ class EasyListViewState extends State<EasyListView> {
     var totalItemCount = _dataItemCount() + headerCount + _footerCount();
     ScrollView listView = widget.isSliverMode
         ? CustomScrollView(
+      controller: widget.controller,
             slivers: List.generate(
                 totalItemCount, (index) => _itemBuilder(context, index)),
           )
@@ -104,7 +105,7 @@ class EasyListViewState extends State<EasyListView> {
           );
 
     List<Widget> children =
-        widget.scrollbarEnable ? [Scrollbar(child: listView)] : [listView];
+        widget.scrollbarEnable ? [Scrollbar(controller: widget.controller, child: listView)] : [listView];
     if (widget.foregroundWidget != null) children.add(widget.foregroundWidget!);
     return Stack(children: children);
   }
