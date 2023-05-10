@@ -55,12 +55,27 @@ enum ItemType { header, footer, loadMore, data, dividerData }
 class EasyListViewState extends State<EasyListView> {
   bool get isNested => widget.headerSliverBuilder != null;
 
+  late ScrollController _controller;
+
+  @override
+  void initState() {
+    _controller=widget.controller??ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) => isNested
       ? NestedScrollView(
           headerSliverBuilder: widget.headerSliverBuilder!,
           physics: widget.physics,
-          controller: widget.controller,
+          controller: _controller,
           body: MediaQuery.removePadding(
             context: context,
             removeTop: true,
@@ -92,20 +107,20 @@ class EasyListViewState extends State<EasyListView> {
     var totalItemCount = _dataItemCount() + headerCount + _footerCount();
     ScrollView listView = widget.isSliverMode
         ? CustomScrollView(
-      controller: widget.controller,
+      controller: _controller,
             slivers: List.generate(
                 totalItemCount, (index) => _itemBuilder(context, index)),
           )
         : ListView.builder(
             physics: isNested ? null : widget.physics,
-            controller: isNested ? null : widget.controller,
+            controller: isNested ? null : _controller,
             padding: widget.padding,
             itemCount: totalItemCount,
             itemBuilder: _itemBuilder,
           );
 
     List<Widget> children =
-        widget.scrollbarEnable ? [Scrollbar(controller: widget.controller, child: listView)] : [listView];
+        widget.scrollbarEnable ? [Scrollbar(controller: _controller, child: listView)] : [listView];
     if (widget.foregroundWidget != null) children.add(widget.foregroundWidget!);
     return Stack(children: children);
   }
