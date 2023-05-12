@@ -1,15 +1,16 @@
 name: easy_listview
 description: A simple widget to help you to build ListView with header, footer, divider, and loadmore function.
 version: 0.1.4
-author: showang <showang730@gmail.com>
 homepage: https://github.com/showang/flutter_easy_listview
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_lints: ^2.0.1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=1.17.0"
 
 dev_dependencies:
   flutter_test:
