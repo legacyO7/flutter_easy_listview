@@ -1,4 +1,8 @@
-![pub](https://img.shields.io/pub/v/easy_listview.svg)
+![pub](https://img.shields.io/pub/v/easy_listview_l7.svg)
+
+
+# intro 
+This is a fork of the package [easy_listview](https://pub.dev/packages/easy_listview) with added null safety, dart 3 compatibility and other bugfixes
 
 # easy_listview
 
@@ -36,7 +40,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  easy_listview: {last_version}
+  easy_listview_l7: {last_version}
 ```
 
 ## 2. Install it
@@ -52,5 +56,5 @@ Alternatively, your editor might support flutter packages get. Check the docs fo
 Now in your Dart code, you can use:
 
 ```dart
-import 'package:easy_listview/easy_listview.dart';
+import 'package:easy_listview/easy_listview_l7.dart';
 ```
