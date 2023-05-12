@@ -1,5 +1,5 @@
+import 'package:easy_listview_l7/easy_listview_l7.dart';
 import 'package:flutter/widgets.dart';
-import 'package:easy_listview/easy_listview.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -7,17 +7,17 @@ void main() {
     var easyListView = EasyListView(
       itemCount: 10,
       itemBuilder: (context, index) {
-        return new Text("Item $index");
+        return Text("Item $index");
       },
       headerBuilder: (context) {
-        return new Text("Header widget");
+        return const Text("Header widget");
       },
       footerBuilder: (context) {
-        return new Text("Footer widget");
+        return const Text("Footer widget");
       },
       loadMore: true,
       onLoadMore: () {
-        print("load more request.");
+        debugPrint("load more request.");
       },
     );
     easyListView.createState();

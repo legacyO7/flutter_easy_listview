@@ -3,10 +3,9 @@ library easy_listview;
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class EasyListView extends StatefulWidget {
-  EasyListView({
+  const EasyListView({Key? key,
     required this.itemCount,
     required this.itemBuilder,
     this.headerBuilder,
@@ -27,7 +26,7 @@ class EasyListView extends StatefulWidget {
     // Sliver mode will discard a lot of ListView variables (likes physics, controller),
     // and each of items must be sliver.
     // *Sliver mode will build all items when inited. (ListView item is built by lazy)*
-  }) : assert(itemBuilder != null);
+  }) : super(key: key);
 
   final int itemCount;
   final WidgetBuilder? headerBuilder;
@@ -143,7 +142,7 @@ class EasyListViewState extends State<EasyListView> {
     if ((widget.loadMoreWhenNoData ||
             (!widget.loadMoreWhenNoData && widget.itemCount > 0)) &&
         widget.onLoadMore != null) {
-      Timer(Duration(milliseconds: 50), widget.onLoadMore!);
+      Timer(const Duration(milliseconds: 50), widget.onLoadMore!);
     }
     return widget.loadMoreItemBuilder != null
         ? widget.loadMoreItemBuilder!(context)
@@ -183,7 +182,7 @@ class EasyListViewState extends State<EasyListView> {
   final _defaultLoadMore = Container(
     padding: const EdgeInsets.all(8.0),
     child: const Center(
-      child: const CircularProgressIndicator(),
+      child: CircularProgressIndicator(),
     ),
   );
 
