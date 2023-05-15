@@ -33,6 +33,9 @@ There is an example in the repo.
 
 <img src="https://user-images.githubusercontent.com/780712/46780315-970aa300-cd4e-11e8-8dcf-4921821ca454.gif" width="300" />
 
+### [usage example](https://github.com/legacyO7/gitstats/blob/734e3d30c38b71a4729427aab7efb12ef59a2818/lib/ui/stat_screen/widgets/stats_list_widget.dart#LL24C3-L24C3)
+
+
 # Use this package as a library
 ## 1. Depend on it
 Add this to your package's pubspec.yaml file:
