@@ -56,5 +56,5 @@ Alternatively, your editor might support flutter packages get. Check the docs fo
 Now in your Dart code, you can use:
 
 ```dart
-import 'package:easy_listview/easy_listview_l7.dart';
+import 'package:easy_listview_l7/easy_listview_l7.dart';
 ```
