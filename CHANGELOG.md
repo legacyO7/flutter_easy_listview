@@ -8,3 +8,7 @@
 ## [0.1.6]
 
 * properly dispose controller
+
+## [0.1.7]
+
+* add refresh indicator

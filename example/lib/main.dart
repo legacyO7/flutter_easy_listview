@@ -41,6 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  void clearData(){
+    skipCount=0;
+    loadedList=[];
+  }
+
   void loadMore(){
       loadedList.addAll(dummyList.sublist(skipCount,skipCount+maxCount<dummyList.length? skipCount + maxCount:null));
       skipCount += 5;
@@ -54,6 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text("Easy ListView Example"),
         ),
         body: EasyListView(
+          onRefresh: () async{
+            clearData();
+            loadMore();
+            setState(() {});
+          },
           itemCount: loadedList.length,
           itemBuilder: (BuildContext context, int index) {
             return Text(loadedList[index]);

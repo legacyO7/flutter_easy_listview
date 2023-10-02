@@ -23,7 +23,8 @@ var listWidget = new EasyListView(
           loadMore: hasNextPage,                      // Load more flag
           onLoadMore: onLoadMoreEvent,                // Load more callback
           foregroundWidget: foregroundWidget,         // Widget witch overlap on ListView
-          
+          controller: ScrollController,                // If required
+          onRefresh: refreshEvent                    // Swipe down refresh callback          
         );
 ```
 

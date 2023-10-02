@@ -22,6 +22,7 @@ class EasyListView extends StatefulWidget {
     this.padding,
     this.scrollbarEnable = true,
     this.isSliverMode = false,
+    this.onRefresh
     // [Not Recommended]
     // Sliver mode will discard a lot of ListView variables (likes physics, controller),
     // and each of items must be sliver.
@@ -44,6 +45,7 @@ class EasyListView extends StatefulWidget {
   final Widget? foregroundWidget;
   final EdgeInsetsGeometry? padding;
   final bool isSliverMode;
+  final Function? onRefresh;
 
   @override
   State<StatefulWidget> createState() => EasyListViewState();
@@ -72,18 +74,34 @@ class EasyListViewState extends State<EasyListView> {
 
 
   @override
-  Widget build(BuildContext context) => isNested
-      ? NestedScrollView(
-          headerSliverBuilder: widget.headerSliverBuilder!,
-          physics: widget.physics,
-          controller: _controller,
-          body: MediaQuery.removePadding(
-            context: context,
-            removeTop: true,
-            child: _buildList(),
-          ),
-        )
-      : _buildList();
+  Widget build(BuildContext context) =>
+   isNested
+      ? _nestedScrollView()
+          : _buildListWrapper();
+
+
+  Widget _nestedScrollView()=>
+      NestedScrollView(
+        headerSliverBuilder: widget.headerSliverBuilder!,
+        physics: widget.physics,
+        controller: _controller,
+        body: MediaQuery.removePadding(
+          context: context,
+          removeTop: true,
+          child: _buildListWrapper(),
+        ),
+      );
+
+
+  Widget _buildListWrapper(){
+    if(widget.onRefresh!=null) {
+      return RefreshIndicator(child: _buildList(),
+          onRefresh:() async =>await widget.onRefresh!());
+    }
+
+    return _buildList();
+
+  }
 
   Widget _itemBuilder(context, index) {
     var headerCount = _headerCount();
@@ -103,6 +121,8 @@ class EasyListViewState extends State<EasyListView> {
     }
   }
 
+  
+  
   _buildList() {
     var headerCount = _headerCount();
     var totalItemCount = _dataItemCount() + headerCount + _footerCount();
